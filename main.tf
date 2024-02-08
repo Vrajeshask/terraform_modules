@@ -3,24 +3,11 @@ provider "azurerm" {
   features {}
 }
 
-# Resource Group
-resource "azurerm_resource_group" "ncpl-rg" {
-  name     = var.resource_group_name
-  location = var.resource_group_location
+module "modules_azure" {
+  source = "D:/terraform_modules/azure_modules"
+  resource_group_name        = "ncpl-rg"
+  resource_group_location    = "East US"
+  client_id     = "a9222413-c402-47c1-aaa1-1c59962aa118"
+  client_secret = "yhh8Q~wn.H3mj.seg4kKbElrVe2oG0zwJzp7Eabd"
 }
 
-# Virtual Network
-resource "azurerm_virtual_network" "ncpl-vn" {
-  name                = "ncpl-vn"
-  address_space       = ["10.0.0.0/8"]
-  location            = azurerm_resource_group.ncpl-rg.location
-  resource_group_name = azurerm_resource_group.ncpl-rg.name
-}
-
-# Subnet
-resource "azurerm_subnet" "ncpl-subnet" {
-  name                 = "ncpl-Subnet"
-  resource_group_name  = azurerm_resource_group.ncpl-rg.name
-  virtual_network_name = azurerm_virtual_network.ncpl-vn.name
-  address_prefixes    = ["10.1.0.0/16"]
-}
