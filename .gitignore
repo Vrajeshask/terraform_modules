@@ -1,0 +1,4 @@
+.terraform
+#D:\NCPL\.terraform
+#.terraform/providers/registry.terraform.io/hashicorp/azurerm/*/terraform-provider-azurerm_*.exe
+D:\terraform_modules\.terraform\providers\registry.terraform.io\hashicorp\azurerm\3.90.0\windows_amd64
